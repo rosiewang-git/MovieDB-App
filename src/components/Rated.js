@@ -22,12 +22,12 @@ export default function Rated() {
         );
     }, [user]);
 
-    console.log("ratedMovies in Favorite:", ratedMovies);
     return (
         <div>
             <h1>Rated List</h1>
             <div className="rated-movie-list">
-                {ratedMovies &&
+                {user &&
+                    ratedMovies &&
                     ratedMovies.map((movie) => {
                         return (
                             <li key={movie.id}>

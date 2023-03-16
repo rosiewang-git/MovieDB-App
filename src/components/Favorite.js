@@ -27,7 +27,8 @@ export default function Favorite() {
         <div>
             <h1>Favorite List</h1>
             <div className="fav-movie-list">
-                {favMovies &&
+                {user &&
+                    favMovies &&
                     favMovies.map((movie) => {
                         return (
                             <li key={movie.id}>
