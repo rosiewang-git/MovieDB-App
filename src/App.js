@@ -18,14 +18,11 @@ function App() {
         <div className="App">
             <Header />
             <Routes>
-                <Route static path="/MovieDB-App/" element={<Home />} />
-                <Route path="/MovieDB-App/login" element={<Login />} />
-                <Route path="/MovieDB-App/favorite" element={<Favorite />} />
-                <Route path="/MovieDB-App/rated" element={<Rated />} />
-                <Route
-                    path="/MovieDB-App/movies/:movieId"
-                    element={<MovieDetail />}
-                />
+                <Route static path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/favorite" element={<Favorite />} />
+                <Route path="/rated" element={<Rated />} />
+                <Route path="/movies/:movieId" element={<MovieDetail />} />
             </Routes>
         </div>
     );

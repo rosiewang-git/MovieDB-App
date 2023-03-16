@@ -3,18 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { store } from "./store/index";
 import { Provider } from "react-redux";
 import Providers from "./components/Providers";
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
             <Providers>
                 <App />
             </Providers>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>,
     document.getElementById("root")
 );

@@ -16,9 +16,9 @@ export default function Header() {
         setTab(newValue);
     };
     const routes = [
-        { to: "/MovieDB-App/", title: "Home" },
-        { to: "/MovieDB-App/favorite", title: "Favorite" },
-        { to: "/MovieDB-App/rated", title: "Rated" },
+        { to: "/", title: "Home" },
+        { to: "/favorite", title: "Favorite" },
+        { to: "/rated", title: "Rated" },
     ];
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
