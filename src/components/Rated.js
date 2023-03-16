@@ -25,7 +25,7 @@ export default function Rated() {
     console.log("ratedMovies in Favorite:", ratedMovies);
     return (
         <div>
-            <h1>Favorite List</h1>
+            <h1>Rated List</h1>
             <div className="rated-movie-list">
                 {ratedMovies &&
                     ratedMovies.map((movie) => {
