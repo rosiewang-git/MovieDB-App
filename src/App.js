@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router";
+import Home from "./components/Home";
+import Favorite from "./components/Favorite";
+import Login from "./components/Login";
+import Rated from "./components/Rated";
+import Header from "./components/Header";
+import MovieDetail from "./components/MovieDetail";
+import useUser from "./hooks/useUser";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { loadUserData } = useUser();
+    useEffect(() => {
+        loadUserData();
+    }, []);
+    return (
+        <div className="App">
+            <Header />
+            <Routes>
+                <Route static path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/favorite" element={<Favorite />} />
+                <Route path="/rated" element={<Rated />} />
+                <Route path="/movies/:movieId" element={<MovieDetail />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;

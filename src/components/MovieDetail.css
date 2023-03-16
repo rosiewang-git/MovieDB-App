@@ -1,0 +1,64 @@
+.detail-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 50px;
+    margin: 30px 100px 10px 100px;
+}
+
+.detail-container img {
+    height: 80vh;
+    width: 400px;
+}
+
+.genres-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+h1 {
+    margin: 0px;
+}
+p {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.genres-flex p {
+    border: 1px solid royalblue;
+    border-radius: 30px;
+    padding: 5px;
+    background-color: royalblue;
+    color: white;
+    font: 0.8rem sans-serif;
+}
+.rating-box {
+    height: 30px;
+}
+
+.rating-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.rating-flex Button {
+    height: 30px;
+}
+
+.production-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    text-align: center;
+}
+
+.production-flex img {
+    width: 60px;
+    height: 40px;
+}
+.production-flex p {
+    font-size: 15px;
+}

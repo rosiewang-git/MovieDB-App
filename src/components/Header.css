@@ -1,0 +1,11 @@
+.logo {
+    height: 80px;
+    width: 120px;
+}
+
+.header-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: mediumpurple;
+}

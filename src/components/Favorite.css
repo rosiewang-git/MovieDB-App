@@ -1,0 +1,12 @@
+h1 {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.fav-movie-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+}
