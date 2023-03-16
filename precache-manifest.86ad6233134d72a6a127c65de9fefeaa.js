@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "4ceb14d2823870850146",
+    "revision": "0c82f2ec448548c66e4b",
     "url": "/MovieDB-App/static/css/main.8d6b2795.chunk.css"
   },
   {
-    "revision": "4ceb14d2823870850146",
-    "url": "/MovieDB-App/static/js/main.785857fa.chunk.js"
+    "revision": "0c82f2ec448548c66e4b",
+    "url": "/MovieDB-App/static/js/main.084ff431.chunk.js"
   },
   {
     "revision": "efdfb694ad7aa3e99145",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/MovieDB-App/static/media/logo.06e73328.svg"
   },
   {
-    "revision": "b65421cc1341422e51c064d71d3f9aab",
+    "revision": "7e4053e0b879fbc871841b140dbe9aa5",
     "url": "/MovieDB-App/index.html"
   }
 ];
