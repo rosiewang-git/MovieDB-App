@@ -63,7 +63,7 @@ export default function MovieDetail() {
                     {detail.vote_average}
                 </span>
                 <p>Your Rating: </p>
-                {ratedList[detail.id] ? (
+                {user && ratedList[detail.id] ? (
                     <p>{ratedList[detail.id]}</p>
                 ) : (
                     <p> Not yet</p>

@@ -3,10 +3,12 @@ import { setFavList, setRatedList } from "../store/slices/movies-slice";
 import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import userContext from "../contexts/userContext";
+import { useNavigate } from "react-router-dom";
 
 export default function useUser() {
     const { user, setUser } = useContext(userContext);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const loadUserMovies = (userInfo) => {
         ClientAPI.getFavoriteMovies(userInfo.userId, userInfo.sessionId).then(
             ({ data }) => {
@@ -65,6 +67,7 @@ export default function useUser() {
     const logout = () => {
         localStorage.removeItem("user");
         setUser(null);
+        navigate("/");
     };
 
     const loadUserData = () => {
