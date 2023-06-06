@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import logo from "./../logo.svg";
-import "./Header.css";
+import logo from "./../../images/logo.svg";
+import "./Navbar.css";
 import { Link } from "react-router-dom";
-import useUser from "../hooks/useUser";
+import useUser from "../../hooks/useUser";
 import { Menu, MenuItem } from "@material-ui/core";
+import _ from "lodash";
+import { useSelector } from "react-redux";
 
-export default function Header() {
+export default function Navbar() {
+    const { user } = useSelector((state) => state.user);
     const [tab, setTab] = useState("home");
-    const { user, logout } = useUser();
+    const { logout } = useUser();
     const [anchorEl, setAnchorEl] = useState(null);
-    const handleChange = (event, newValue) => {
-        setTab(newValue);
-    };
-    const routes = [
+    const routes = [{ to: "/", title: "Home" }];
+    const protectedRoutes = [
         { to: "/", title: "Home" },
         { to: "/favorite", title: "Favorite" },
         { to: "/rated", title: "Rated" },
@@ -27,20 +28,22 @@ export default function Header() {
         logout();
         setAnchorEl(null);
     };
+
     return (
         <div className="header-box">
             <img src={logo} className="logo" alt="web-logo-img" />
             <Box sx={{ width: "100%" }}>
                 <Tabs
                     value={tab}
-                    onChange={handleChange}
+                    onChange={() => setTab(tab)}
                     textcolor="white"
                     indicatorColor="none"
                     aria-label="secondary tabs example"
                 >
-                    {routes.map((route) => {
+                    {(user ? protectedRoutes : routes).map((route, index) => {
                         return (
                             <Link
+                                key={index}
                                 to={route.to}
                                 style={{
                                     textDecoration: "none",
@@ -62,15 +65,7 @@ export default function Header() {
             </Box>
             {user ? (
                 <>
-                    <Box
-                        onClick={handleClick}
-                        style={{
-                            paddingRight: "30px",
-                            color: "white",
-                            fontWeight: "bold",
-                            fontSize: "30px",
-                        }}
-                    >
+                    <Box onClick={handleClick} className="username">
                         {user.userName}{" "}
                     </Box>
                     <Menu
@@ -89,7 +84,7 @@ export default function Header() {
                     </Menu>
                 </>
             ) : (
-                <Link to="/login" style={{ textDecoration: "none" }}>
+                <Link to="/login" className="login">
                     <Box
                         style={{
                             paddingRight: "40px",

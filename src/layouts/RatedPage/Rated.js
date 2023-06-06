@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ClientAPI from "../apiServices";
-import useUser from "../hooks/useUser";
+import ClientAPI from "../../apiServices";
 import "./Rated.css";
-import MovieCard from "./MovieCard";
+import MovieCard from "../SharedComponenets/MovieCard";
 
 export default function Rated() {
     const [ratedMovies, setRatedMovies] = useState([]);
     const { favList } = useSelector((state) => state.movies);
-    const { user } = useUser();
+    const { user } = useSelector((state) => state.user);
 
     useEffect(() => {
         if (!user) {
@@ -21,10 +20,10 @@ export default function Rated() {
             }
         );
     }, [user]);
+    console.log("rated movies in rated", ratedMovies);
 
     return (
         <div>
-            <h1>Rated List</h1>
             <div className="rated-movie-list">
                 {user &&
                     ratedMovies &&

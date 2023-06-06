@@ -9,3 +9,14 @@
     align-items: center;
     background-color: mediumpurple;
 }
+
+.username {
+    padding-right: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.login {
+    text-decoration: none;
+}

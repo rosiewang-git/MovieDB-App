@@ -6,10 +6,10 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./Home.css";
-import MovieCard from "./MovieCard";
+import MovieCard from "../SharedComponenets/MovieCard";
 import { useSelector, useDispatch } from "react-redux";
-import { setMoviesList, setInfo } from "../store/slices/movies-slice";
-import ClientAPI from "../apiServices";
+import { setMoviesList, setInfo } from "../../store/slices/movies-slice";
+import ClientAPI from "../../apiServices";
 
 export default function Home() {
     const [category, setCategory] = useState("now_playing");
@@ -29,6 +29,9 @@ export default function Home() {
                 dispatch(setInfo(res));
             });
     }, [currentPage, category]);
+    console.log("favlIST", favList);
+    console.log("res", info);
+    console.log("moviesList", moviesList);
 
     return (
         <div className="home">
@@ -48,13 +51,18 @@ export default function Home() {
                     </div>
                 )}
                 <Box sx={{ width: 200, paddingRight: "32px" }}>
-                    <FormControl fullwidth>
+                    <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">
                             Category
                         </InputLabel>
                         <Select
+                            label="Category"
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
                             value={category}
-                            onChange={(e) => setCategory(e.target.value)}
+                            onChange={(e) => (
+                                setCategory(e.target.value), setCurrentPage(1)
+                            )}
                         >
                             <MenuItem value={"popular"}>Popular</MenuItem>
                             <MenuItem value={"now_playing"}>

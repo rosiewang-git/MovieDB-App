@@ -5,11 +5,10 @@ import StarIcon from "@mui/icons-material/Star";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
-import ClientAPI from "../apiServices";
-import { IMG_SRC_BASE } from "../constants";
-import { setRatedList } from "../store/slices/movies-slice";
+import ClientAPI from "../../apiServices";
+import { IMG_SRC_BASE } from "../../constants";
+import { setRatedList } from "../../store/slices/movies-slice";
 import { useSelector, useDispatch } from "react-redux";
-import useUser from "../hooks/useUser";
 import _ from "lodash";
 
 export default function MovieDetail() {
@@ -17,18 +16,20 @@ export default function MovieDetail() {
     const { movieId } = useParams();
     const [detail, setDetail] = useState({});
     const { ratedList } = useSelector((state) => state.movies);
-    const { user } = useUser();
+    const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     const handleRate = (id, rating) => {
-        ClientAPI.rateMovie(user.sessionId, id, rating).then(() => {
-            dispatch(
-                setRatedList({
-                    ...ratedList,
-                    [id]: rating,
-                })
-            );
-        });
+        if (user) {
+            ClientAPI.rateMovie(user.sessionId, id, rating).then(() => {
+                dispatch(
+                    setRatedList({
+                        ...ratedList,
+                        [id]: rating,
+                    })
+                );
+            });
+        }
     };
 
     useEffect(() => {

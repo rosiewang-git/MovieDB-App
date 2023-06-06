@@ -4,7 +4,7 @@ import "./Login.css";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import useUser from "../hooks/useUser";
+import useUser from "../../hooks/useUser";
 import { TextField } from "@mui/material";
 
 const validationSchema = yup.object({
@@ -63,7 +63,6 @@ export default function Login() {
                 />
             </div>
             <Button
-                fullwidth
                 variant="contained"
                 style={{ backgroundColor: "blueviolet", width: 300 }}
                 type="submit"

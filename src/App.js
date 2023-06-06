@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router";
-import Home from "./components/Home";
-import Favorite from "./components/Favorite";
-import Login from "./components/Login";
-import Rated from "./components/Rated";
-import Header from "./components/Header";
-import MovieDetail from "./components/MovieDetail";
+import Home from "./layouts/HomePage/Home";
+import Favorite from "./layouts/FavoritePage/Favorite";
+import Login from "./layouts/LoginPage/Login";
+import Rated from "./layouts/RatedPage/Rated";
+import MovieDetail from "./layouts/MovieDetailPage/MovieDetail";
 import useUser from "./hooks/useUser";
+import Navbar from "./layouts/Navbar/Navbar";
 
 function App() {
     const { loadUserData } = useUser();
@@ -16,7 +16,7 @@ function App() {
     }, []);
     return (
         <div className="App">
-            <Header />
+            <Navbar />
             <Routes>
                 <Route static path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />

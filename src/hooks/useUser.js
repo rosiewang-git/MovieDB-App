@@ -1,12 +1,11 @@
 import ClientAPI from "../apiServices";
 import { setFavList, setRatedList } from "../store/slices/movies-slice";
+import { setUser } from "../store/slices/user-slice";
 import { useDispatch } from "react-redux";
-import { useContext } from "react";
-import userContext from "../contexts/userContext";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function useUser() {
-    const { user, setUser } = useContext(userContext);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const loadUserMovies = (userInfo) => {
@@ -52,7 +51,7 @@ export default function useUser() {
                                     "user",
                                     JSON.stringify(userInfo)
                                 );
-                                setUser(userInfo);
+                                dispatch(setUser(userInfo));
                                 return userInfo;
                             })
                             .then((userInfo) => {
@@ -66,7 +65,7 @@ export default function useUser() {
 
     const logout = () => {
         localStorage.removeItem("user");
-        setUser(null);
+        dispatch(setUser(null));
         navigate("/");
     };
 
@@ -75,12 +74,12 @@ export default function useUser() {
         if (userDataStr) {
             try {
                 const userInfo = JSON.parse(userDataStr);
-                setUser(userInfo);
+                dispatch(setUser(userInfo));
                 loadUserMovies(userInfo);
             } catch (e) {
                 console.log(e);
             }
         }
     };
-    return { user, setUser, login, logout, loadUserData };
+    return { login, logout, loadUserData };
 }

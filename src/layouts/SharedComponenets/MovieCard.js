@@ -5,14 +5,13 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import { IMG_SRC_BASE } from "../constants";
-import useUser from "../hooks/useUser";
-import ClientAPI from "../apiServices";
+import { IMG_SRC_BASE } from "../../constants";
+import ClientAPI from "../../apiServices";
 import { useSelector, useDispatch } from "react-redux";
-import { setFavList } from "../store/slices/movies-slice";
+import { setFavList } from "../../store/slices/movies-slice";
 
 export default function MovieCard(props) {
-    const { user } = useUser();
+    const { user } = useSelector((state) => state.user);
     const { item, myRating, favorite } = props;
     const { favList } = useSelector((state) => state.movies);
     const dispatch = useDispatch();
@@ -35,7 +34,6 @@ export default function MovieCard(props) {
 
     return (
         <div className="movie-card">
-            <img src={`${IMG_SRC_BASE}${item.poster_path}`} alt="movie-img" />
             <Link
                 to={`/movies/${item.id}`}
                 style={{
@@ -44,12 +42,16 @@ export default function MovieCard(props) {
                 }}
                 className="movie-title"
             >
+                <img
+                    src={`${IMG_SRC_BASE}${item.poster_path}`}
+                    alt="movie-img"
+                />
                 <p>{item.original_title} </p>
             </Link>
             <div className="card-score-fav">
                 <span>
                     <StarIcon style={{ color: "orange" }} />
-                    {myRating
+                    {user && myRating
                         ? `${item.vote_average} / ${myRating}`
                         : item.vote_average}
                 </span>

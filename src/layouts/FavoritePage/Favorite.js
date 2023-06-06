@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ClientAPI from "../apiServices";
-import useUser from "../hooks/useUser";
+import ClientAPI from "../../apiServices";
 import "./Favorite.css";
-import MovieCard from "./MovieCard";
+import MovieCard from "../SharedComponenets/MovieCard";
 
 export default function Favorite() {
     const [favMovies, setFavMovies] = useState([]);
     const { favList } = useSelector((state) => state.movies);
-    const { user } = useUser();
+    const { user } = useSelector((state) => state.user);
 
     useEffect(() => {
         if (!user) {
@@ -22,10 +21,8 @@ export default function Favorite() {
         );
     }, [user]);
 
-    console.log("favMovies in Favorite:", favMovies);
     return (
         <div>
-            <h1>Favorite List</h1>
             <div className="fav-movie-list">
                 {user &&
                     favMovies &&
