@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/MovieDB-App/precache-manifest.9aa50b84057197eb0aaad32348292928.js"
+  "/MovieDB-App/precache-manifest.a846a633bbdb3c65e31ea4debedfde74.js"
 );
 
 workbox.clientsClaim();
