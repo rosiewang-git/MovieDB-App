@@ -34,10 +34,6 @@ select {
     font-size: medium;
 }
 
-.btn-outline-dark {
-    border: soild mediumpurple !important;
-}
-
 .btn-outline-dark:hover {
     background-color: mediumpurple !important;
 }

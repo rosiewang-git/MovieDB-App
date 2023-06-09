@@ -51,7 +51,7 @@ export default function Login() {
                     id="password"
                     name="password"
                     label="Password"
-                    type="text"
+                    type="password"
                     style={{ width: 400 }}
                     onChange={formik.handleChange}
                     value={formik.values.password}
