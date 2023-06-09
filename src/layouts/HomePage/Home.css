@@ -24,3 +24,20 @@
 li {
     list-style: none;
 }
+
+select {
+    width: 200px;
+    margin-right: 30px;
+    background-color: mediumpurple;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.btn-outline-dark {
+    border: soild mediumpurple !important;
+}
+
+.btn-outline-dark:hover {
+    background-color: mediumpurple !important;
+}

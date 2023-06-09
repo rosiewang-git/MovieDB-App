@@ -62,3 +62,13 @@ p {
 .production-flex p {
     font-size: 15px;
 }
+
+.btn-outline-dark {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.custom {
+    width: 100px !important;
+    height: 45px !important;
+}

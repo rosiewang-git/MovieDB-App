@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./MovieDetail.css";
 import StarIcon from "@mui/icons-material/Star";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
 import ClientAPI from "../../apiServices";
 import { IMG_SRC_BASE } from "../../constants";
@@ -70,23 +68,26 @@ export default function MovieDetail() {
                     <p> Not yet</p>
                 )}
                 <span className="rating-flex">
-                    <Select
-                        className="rating-box"
+                    <select
+                        class="form-select"
+                        style={{ width: "100px" }}
+                        aria-label="Default select example"
                         value={score}
                         onChange={(e) => setScore(e.target.value)}
                     >
                         {_.range(1, 11).map((num) => (
-                            <MenuItem key={num} value={num}>
+                            <option key={num} value={num}>
                                 {num}
-                            </MenuItem>
+                            </option>
                         ))}
-                    </Select>
-                    <Button
-                        variant="outlined"
+                    </select>
+                    <button
+                        type="button"
+                        class="btn btn-outline-dark custom"
                         onClick={() => handleRate(detail.id, score)}
                     >
                         RATE IT!
-                    </Button>
+                    </button>
                 </span>
                 <p>Production Companies: </p>
                 <span className="production-flex">

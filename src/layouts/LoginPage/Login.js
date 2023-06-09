@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import "./Login.css";
 import * as yup from "yup";
 import { useFormik } from "formik";
@@ -62,13 +61,13 @@ export default function Login() {
                     }
                 />
             </div>
-            <Button
-                variant="contained"
-                style={{ backgroundColor: "blueviolet", width: 300 }}
+            <button
+                type="button"
+                class="btn btn-outline-dark custom"
                 type="submit"
             >
                 SUBMIT
-            </Button>
+            </button>
         </form>
     );
 }

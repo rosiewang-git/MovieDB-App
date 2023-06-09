@@ -30,3 +30,11 @@ span {
     flex-direction: row;
     justify-content: space-between;
 }
+
+.character-limit {
+    max-width: 250px; /* Adjust the max width as per your needs */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0px 20px 0px 20px;
+}

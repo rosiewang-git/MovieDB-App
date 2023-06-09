@@ -46,7 +46,7 @@ export default function MovieCard(props) {
                     src={`${IMG_SRC_BASE}${item.poster_path}`}
                     alt="movie-img"
                 />
-                <p>{item.original_title} </p>
+                <p className="character-limit">{item.original_title} </p>
             </Link>
             <div className="card-score-fav">
                 <span>

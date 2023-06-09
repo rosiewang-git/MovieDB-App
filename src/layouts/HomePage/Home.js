@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import "./Home.css";
 import MovieCard from "../SharedComponenets/MovieCard";
 import { useSelector, useDispatch } from "react-redux";
@@ -38,41 +33,36 @@ export default function Home() {
             <div className="home-top">
                 {info && (
                     <div className="pagination-flex">
-                        <Button variant="outlined" onClick={handlePREV}>
+                        <button
+                            type="button"
+                            class="btn btn-outline-dark custom"
+                            onClick={handlePREV}
+                        >
                             PREV
-                        </Button>
+                        </button>
                         <p>{currentPage + "/" + info.total_pages}</p>
-                        <Button
-                            variant="outlined"
+                        <button
+                            type="button"
+                            class="btn btn-outline-dark custom"
                             onClick={() => setCurrentPage(currentPage + 1)}
                         >
                             NEXT
-                        </Button>
+                        </button>
                     </div>
                 )}
-                <Box sx={{ width: 200, paddingRight: "32px" }}>
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">
-                            Category
-                        </InputLabel>
-                        <Select
-                            label="Category"
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={category}
-                            onChange={(e) => (
-                                setCategory(e.target.value), setCurrentPage(1)
-                            )}
-                        >
-                            <MenuItem value={"popular"}>Popular</MenuItem>
-                            <MenuItem value={"now_playing"}>
-                                Now Playing
-                            </MenuItem>
-                            <MenuItem value={"top_rated"}>Top Rated</MenuItem>
-                            <MenuItem value={"upcoming"}>Upcoming</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
+                <select
+                    class="form-select w-25"
+                    aria-label="Default select example"
+                    value={category}
+                    onChange={(e) => (
+                        setCategory(e.target.value), setCurrentPage(1)
+                    )}
+                >
+                    <option value="popular">Popular</option>
+                    <option value="now_playing">Now Playing</option>
+                    <option value="top_rated">Top Rated</option>
+                    <option value="upcoming">Upcoming</option>
+                </select>
             </div>
             <div className="movie-list">
                 {moviesList &&
