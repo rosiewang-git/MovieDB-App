@@ -10,3 +10,9 @@ h1 {
     align-items: center;
     justify-items: center;
 }
+
+.rated-pagination {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    margin-top: 10px;
+}

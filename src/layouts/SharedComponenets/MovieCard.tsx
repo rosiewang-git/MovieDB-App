@@ -9,13 +9,19 @@ import { IMG_SRC_BASE } from "../../constants";
 import ClientAPI from "../../apiServices";
 import { useSelector, useDispatch } from "react-redux";
 import { setFavList } from "../../store/slices/movies-slice";
+import MovieModel from "../../models/MovieModel";
+import { RootState } from "../../store/store";
 
-export default function MovieCard(props) {
-    const { user } = useSelector((state) => state.user);
+export const MovieCard: React.FC<{
+    item: MovieModel;
+    myRating: number;
+    favorite: boolean;
+}> = (props) => {
+    const { user } = useSelector((state: RootState) => state.user);
     const { item, myRating, favorite } = props;
-    const { favList } = useSelector((state) => state.movies);
+    const { favList } = useSelector((state: RootState) => state.movies);
     const dispatch = useDispatch();
-    const handleToggleFavorite = (id) => {
+    const handleToggleFavorite = (id: number) => {
         if (!user) {
             return;
         }
@@ -31,6 +37,7 @@ export default function MovieCard(props) {
             }
         );
     };
+    console.log("favList", favList);
 
     return (
         <div className="movie-card">
@@ -65,4 +72,4 @@ export default function MovieCard(props) {
             </div>
         </div>
     );
-}
+};

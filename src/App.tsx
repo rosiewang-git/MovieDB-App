@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router";
-import Home from "./layouts/HomePage/Home";
+import { Home } from "./layouts/HomePage/Home";
 import Favorite from "./layouts/FavoritePage/Favorite";
-import Login from "./layouts/LoginPage/Login";
+import { Login } from "./layouts/LoginPage/Login";
 import Rated from "./layouts/RatedPage/Rated";
 import MovieDetail from "./layouts/MovieDetailPage/MovieDetail";
 import useUser from "./hooks/useUser";
 import Navbar from "./layouts/Navbar/Navbar";
 
-function App() {
+export const App = () => {
     const { loadUserData } = useUser();
     useEffect(() => {
         loadUserData();
@@ -18,7 +18,7 @@ function App() {
         <div className="App">
             <Navbar />
             <Routes>
-                <Route static path="/" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/favorite" element={<Favorite />} />
                 <Route path="/rated" element={<Rated />} />
@@ -26,6 +26,4 @@ function App() {
             </Routes>
         </div>
     );
-}
-
-export default App;
+};

@@ -7,21 +7,23 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import { Menu, MenuItem } from "@material-ui/core";
-import _ from "lodash";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import { setCurrentPage } from "../../store/slices/movies-slice";
 
 export default function Navbar() {
-    const { user } = useSelector((state) => state.user);
-    const [tab, setTab] = useState("home");
+    const dispatch = useDispatch();
+    const { user } = useSelector((state: RootState) => state.user);
+    const [tab, setTab] = useState<string>("home");
     const { logout } = useUser();
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const routes = [{ to: "/", title: "Home" }];
     const protectedRoutes = [
         { to: "/", title: "Home" },
         { to: "/favorite", title: "Favorite" },
         { to: "/rated", title: "Rated" },
     ];
-    const handleClick = (e) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(e.currentTarget);
     };
     const handleLogout = () => {
@@ -34,10 +36,10 @@ export default function Navbar() {
             <img src={logo} className="logo" alt="web-logo-img" />
             <Box sx={{ width: "100%" }}>
                 <Tabs
-                    value={tab}
+                    // value={tab}
                     onChange={() => setTab(tab)}
-                    textcolor="white"
-                    indicatorColor="none"
+                    // textcolor="white"
+                    // indicatorColor="none"
                     aria-label="secondary tabs example"
                 >
                     {(user ? protectedRoutes : routes).map((route, index) => {
@@ -57,6 +59,7 @@ export default function Navbar() {
                                         fontWeight: "bold",
                                         fontSize: "25px",
                                     }}
+                                    onClick={() => dispatch(setCurrentPage(1))}
                                 />
                             </Link>
                         );
