@@ -1,14 +1,14 @@
 {
-  "main.css": "/MovieDB-App/static/css/main.71638898.chunk.css",
-  "main.js": "/MovieDB-App/static/js/main.8ea1c6db.chunk.js",
-  "main.js.map": "/MovieDB-App/static/js/main.8ea1c6db.chunk.js.map",
+  "main.css": "/MovieDB-App/static/css/main.e0dbda0e.chunk.css",
+  "main.js": "/MovieDB-App/static/js/main.fd2f19e1.chunk.js",
+  "main.js.map": "/MovieDB-App/static/js/main.fd2f19e1.chunk.js.map",
   "runtime~main.js": "/MovieDB-App/static/js/runtime~main.ab809075.js",
   "runtime~main.js.map": "/MovieDB-App/static/js/runtime~main.ab809075.js.map",
-  "static/js/2.2d745a93.chunk.js": "/MovieDB-App/static/js/2.2d745a93.chunk.js",
-  "static/js/2.2d745a93.chunk.js.map": "/MovieDB-App/static/js/2.2d745a93.chunk.js.map",
+  "static/js/2.9067b2a8.chunk.js": "/MovieDB-App/static/js/2.9067b2a8.chunk.js",
+  "static/js/2.9067b2a8.chunk.js.map": "/MovieDB-App/static/js/2.9067b2a8.chunk.js.map",
   "index.html": "/MovieDB-App/index.html",
-  "precache-manifest.a846a633bbdb3c65e31ea4debedfde74.js": "/MovieDB-App/precache-manifest.a846a633bbdb3c65e31ea4debedfde74.js",
+  "precache-manifest.33d257486202142c86bf39dc72592e68.js": "/MovieDB-App/precache-manifest.33d257486202142c86bf39dc72592e68.js",
   "service-worker.js": "/MovieDB-App/service-worker.js",
-  "static/css/main.71638898.chunk.css.map": "/MovieDB-App/static/css/main.71638898.chunk.css.map",
+  "static/css/main.e0dbda0e.chunk.css.map": "/MovieDB-App/static/css/main.e0dbda0e.chunk.css.map",
   "static/media/logo.svg": "/MovieDB-App/static/media/logo.06e73328.svg"
 }
