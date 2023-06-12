@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
 import { Home } from "./layouts/HomePage/Home";
 import Favorite from "./layouts/FavoritePage/Favorite";
 import { Login } from "./layouts/LoginPage/Login";
@@ -14,6 +14,7 @@ export const App = () => {
     useEffect(() => {
         loadUserData();
     }, []);
+
     return (
         <div className="App">
             <Navbar />

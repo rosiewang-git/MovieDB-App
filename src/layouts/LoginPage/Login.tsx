@@ -3,6 +3,10 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import { TextField } from "@mui/material";
+import {
+    DISPLAY_WARNING_LOGIN,
+    DISPLAY_VALIDATION_ERROR,
+} from "../../constants";
 
 export const Login = () => {
     const { login, displayWarning, setDisplayWarning } = useUser();
@@ -43,7 +47,6 @@ export const Login = () => {
             await login(username, password);
             navigate("/");
         } catch (error) {
-            console.log("running here");
             setDisplayWarning(true);
             setUsername("");
             setPassword("");
@@ -56,12 +59,12 @@ export const Login = () => {
             <h1>Login</h1>
             {displayWarning && (
                 <div className="alert alert-danger" role="alert">
-                    Your username and password are not matched!
+                    {DISPLAY_WARNING_LOGIN}
                 </div>
             )}
             {displayValidationError && (
                 <div className="alert alert-danger" role="alert">
-                    Both username and password are required!
+                    {DISPLAY_VALIDATION_ERROR}
                 </div>
             )}
             <div className="input-box">

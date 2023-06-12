@@ -48,7 +48,6 @@ export default function Rated() {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    console.log("rated movies in rated", ratedMovies);
 
     return (
         <div>

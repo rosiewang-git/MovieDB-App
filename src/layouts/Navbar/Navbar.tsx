@@ -36,10 +36,7 @@ export default function Navbar() {
             <img src={logo} className="logo" alt="web-logo-img" />
             <Box sx={{ width: "100%" }}>
                 <Tabs
-                    // value={tab}
                     onChange={() => setTab(tab)}
-                    // textcolor="white"
-                    // indicatorColor="none"
                     aria-label="secondary tabs example"
                 >
                     {(user ? protectedRoutes : routes).map((route, index) => {

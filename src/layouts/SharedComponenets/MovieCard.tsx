@@ -37,7 +37,16 @@ export const MovieCard: React.FC<{
             }
         );
     };
-    console.log("favList", favList);
+
+    const renderHeart = () => {
+        if (!user) {
+            return;
+        } else if (user && favorite) {
+            return <FavoriteIcon style={{ color: "red" }} />;
+        } else {
+            return <FavoriteBorderIcon style={{ color: "grey" }} />;
+        }
+    };
 
     return (
         <div className="movie-card">
@@ -63,11 +72,7 @@ export const MovieCard: React.FC<{
                         : item.vote_average}
                 </span>
                 <Button onClick={() => handleToggleFavorite(item.id)}>
-                    {user && favorite ? (
-                        <FavoriteIcon style={{ color: "red" }} />
-                    ) : (
-                        <FavoriteBorderIcon style={{ color: "grey" }} />
-                    )}
+                    {renderHeart()}
                 </Button>
             </div>
         </div>

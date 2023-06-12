@@ -8,6 +8,12 @@ import { setRatedList } from "../../store/slices/movies-slice";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { RootState } from "../../store/store";
+import {
+    RATING_NOT_YET,
+    LOGIN_TO_SEE_RATING,
+    DISPLAY_WARNING_RATE,
+    DISPLAY_SUCCESS_RATE,
+} from "../../constants";
 
 interface Genre {
     name: string;
@@ -73,8 +79,8 @@ export default function MovieDetail() {
             if (user && ratedList[detail.id]) {
                 return <p>{ratedList[detail.id]}</p>;
             } else if (user) {
-                return <p> Not yet</p>;
-            } else return <p>Login to see your rating!</p>;
+                return <p> {RATING_NOT_YET}</p>;
+            } else return <p>{LOGIN_TO_SEE_RATING}</p>;
         }
     };
 
@@ -157,7 +163,7 @@ export default function MovieDetail() {
                                     className="alert alert-danger w-auto p-2"
                                     role="alert"
                                 >
-                                    Please login to rate a movie!
+                                    {DISPLAY_WARNING_RATE}
                                 </p>
                             )}
                             {displaySuccess && (
@@ -165,7 +171,7 @@ export default function MovieDetail() {
                                     className="alert alert-success w-auto p-2"
                                     role="alert"
                                 >
-                                    You rated a movie successfully!
+                                    {DISPLAY_SUCCESS_RATE}
                                 </p>
                             )}
                         </span>

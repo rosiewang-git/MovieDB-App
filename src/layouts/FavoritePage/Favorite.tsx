@@ -41,7 +41,6 @@ export default function Favorite() {
         };
         fetchFavoriteMovies();
     }, [user, currentPage, favList]);
-    console.log("fav movies", favMovies);
 
     if (error) {
         return <div>{error}</div>;
