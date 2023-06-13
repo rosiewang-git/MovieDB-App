@@ -25,18 +25,26 @@ export const MovieCard: React.FC<{
         if (!user) {
             return;
         }
-        const { sessionId, userId } = user;
-        ClientAPI.addMovieToFavorite(userId, id, !favList[id], sessionId).then(
-            () => {
+        try {
+            const { sessionId, userId } = user;
+            ClientAPI.addMovieToFavorite(
+                userId,
+                id,
+                !favList[id],
+                sessionId
+            ).then(() => {
                 dispatch(
                     setFavList({
                         ...favList,
                         [id]: !favList[id],
                     })
                 );
-            }
-        );
+            });
+        } catch (error: any) {
+            console.log(error);
+        }
     };
+    console.log("favList", favList);
 
     const renderHeart = () => {
         if (!user) {

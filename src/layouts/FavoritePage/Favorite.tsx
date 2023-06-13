@@ -5,6 +5,8 @@ import "./Favorite.css";
 import { MovieCard } from "../SharedComponenets/MovieCard";
 import { RootState } from "../../store/store";
 import { Pagination } from "../SharedComponenets/Pagination";
+import SpinnerLoading from "../SharedComponenets/SpinnerLoading";
+import { setFavList } from "../../store/slices/movies-slice";
 
 export default function Favorite() {
     const [favMovies, setFavMovies] = useState<any[]>([]);
@@ -22,7 +24,7 @@ export default function Favorite() {
         }
         const fetchFavoriteMovies = async () => {
             try {
-                const response = await ClientAPI.getFavoriteMovies(
+                const response = await ClientAPI.getFavoriteMoviesPage(
                     user.userId,
                     user.sessionId,
                     currentPage
@@ -31,7 +33,7 @@ export default function Favorite() {
                 setTotalPages(total_pages);
                 setFavMovies(results);
                 setError(null);
-            } catch (error) {
+            } catch (error: any) {
                 setError(
                     "Error fetching favorite movies. Please try again later."
                 );
@@ -41,12 +43,13 @@ export default function Favorite() {
         };
         fetchFavoriteMovies();
     }, [user, currentPage, favList]);
+    console.log("favrite movie", favMovies);
 
     if (error) {
         return <div>{error}</div>;
     }
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <SpinnerLoading />;
     }
 
     return (

@@ -9,11 +9,11 @@ import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { RootState } from "../../store/store";
 import {
-    RATING_NOT_YET,
-    LOGIN_TO_SEE_RATING,
+    RATE_THIS_MOVIE,
     DISPLAY_WARNING_RATE,
     DISPLAY_SUCCESS_RATE,
 } from "../../constants";
+import SpinnerLoading from "../SharedComponenets/SpinnerLoading";
 
 interface Genre {
     name: string;
@@ -61,7 +61,7 @@ export default function MovieDetail() {
                     setDisplaySuccess(true);
                     setDisplayWarning(false);
                 })
-                .catch((error) => {
+                .catch((error: any) => {
                     console.error("Error rating movie:", error);
                 });
         } else {
@@ -69,6 +69,7 @@ export default function MovieDetail() {
             setDisplayWarning(true);
         }
     };
+    console.log("get ratedlIST IN MOVIEDETAIL", ratedList);
 
     const handleChangeScore = (e: React.ChangeEvent<{ value: string }>) => {
         setScore(Number(e.target.value));
@@ -77,10 +78,20 @@ export default function MovieDetail() {
     const renderRating = () => {
         if (detail) {
             if (user && ratedList[detail.id]) {
-                return <p>{ratedList[detail.id]}</p>;
+                return (
+                    <>
+                        <p>Your Rating: </p>
+                        <p>{ratedList[detail.id]}</p>
+                    </>
+                );
             } else if (user) {
-                return <p> {RATING_NOT_YET}</p>;
-            } else return <p>{LOGIN_TO_SEE_RATING}</p>;
+                return (
+                    <>
+                        <div></div>
+                        <p> {RATE_THIS_MOVIE}</p>
+                    </>
+                );
+            } else return;
         }
     };
 
@@ -104,7 +115,7 @@ export default function MovieDetail() {
         return <div>{error}</div>;
     }
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <SpinnerLoading />;
     }
 
     return (
@@ -135,7 +146,6 @@ export default function MovieDetail() {
                             />
                             {detail.vote_average}
                         </span>
-                        <p>Your Rating: </p>
                         {renderRating()}
                         <span className="rating-flex">
                             <select

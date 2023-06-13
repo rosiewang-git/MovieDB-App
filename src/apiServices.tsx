@@ -63,7 +63,7 @@ const ClientAPI = {
             { params: { session_id: sessionId } }
         );
     },
-    getFavoriteMovies: async (
+    getFavoriteMoviesPage: async (
         accountId: number,
         sessionId: string,
         currentPage: number

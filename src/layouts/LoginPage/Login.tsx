@@ -46,11 +46,10 @@ export const Login = () => {
             }
             await login(username, password);
             navigate("/");
-        } catch (error) {
-            setDisplayWarning(true);
+        } catch (error: any) {
+            console.log(error);
             setUsername("");
             setPassword("");
-            throw error;
         }
     };
 

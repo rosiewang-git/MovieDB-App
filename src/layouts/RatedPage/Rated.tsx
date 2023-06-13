@@ -5,6 +5,7 @@ import { MovieCard } from "../SharedComponenets/MovieCard";
 import { RootState } from "../../store/store";
 import { Pagination } from "../SharedComponenets/Pagination";
 import { useSelector } from "react-redux";
+import SpinnerLoading from "../SharedComponenets/SpinnerLoading";
 
 export default function Rated() {
     const [ratedMovies, setRatedMovies] = useState<any[]>([]);
@@ -41,12 +42,13 @@ export default function Rated() {
         };
         fetchRatedMovies();
     }, [user]);
+    console.log("fetchRated movie", ratedMovies);
 
     if (error) {
         return <div>{error}</div>;
     }
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <SpinnerLoading />;
     }
 
     return (

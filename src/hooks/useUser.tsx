@@ -4,10 +4,8 @@ import { setFavList, setRatedList } from "../store/slices/movies-slice";
 import { setUser } from "../store/slices/user-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
 
-interface UserInfo {
+export interface UserInfo {
     requestToken: string;
     sessionId: string;
     userId: number;
@@ -18,36 +16,62 @@ export default function useUser() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [displayWarning, setDisplayWarning] = useState(false);
-    const { currentPage } = useSelector((state: RootState) => state.movies);
-    const loadUserMovies = (userInfo: UserInfo) => {
-        ClientAPI.getFavoriteMovies(
-            userInfo.userId,
-            userInfo.sessionId,
-            currentPage
-        ).then(({ data }: { data: { results: any[] } }) => {
-            const { results } = data;
-            const favList = results.reduce((acc, movie) => {
-                acc[movie.id] = true;
-                return acc;
-            }, {});
+
+    const loadUserMovies = async (userInfo: UserInfo) => {
+        try {
+            let currentPageFav = 1;
+            let favList: { [key: number]: boolean } = {};
+            let currentPageRate = 1;
+            let ratedList: { [key: number]: number } = {};
+            while (true) {
+                const {
+                    data,
+                }: { data: { results: any[]; total_pages: number } } =
+                    await ClientAPI.getFavoriteMoviesPage(
+                        userInfo.userId,
+                        userInfo.sessionId,
+                        currentPageFav
+                    );
+                const { results, total_pages } = data;
+                // Add movie IDs to the favList object
+                results.forEach((movie) => {
+                    favList[movie.id] = true;
+                });
+                // Check if there are more pages to fetch
+                if (currentPageFav >= total_pages) {
+                    break;
+                }
+                // Move to the next page
+                currentPageFav++;
+            }
             dispatch(setFavList(favList));
-        });
-        ClientAPI.getRatedMovies(
-            userInfo.userId,
-            userInfo.sessionId,
-            currentPage
-        ).then(({ data }: { data: { results: any[] } }) => {
-            const { results } = data;
-            const ratedList = results.reduce((acc, movie) => {
-                acc[movie.id] = movie.rating;
-                return acc;
-            }, {});
+
+            while (true) {
+                const {
+                    data,
+                }: { data: { results: any[]; total_pages: number } } =
+                    await ClientAPI.getRatedMovies(
+                        userInfo.userId,
+                        userInfo.sessionId,
+                        currentPageRate
+                    );
+                const { results, total_pages } = data;
+                // Add movie IDs to the ratedList object
+                results.forEach((movie) => {
+                    ratedList[movie.id] = movie.rating;
+                });
+                // Check if there are more pages to fetch
+                if (currentPageRate >= total_pages) {
+                    break;
+                }
+                // Move to the next page
+                currentPageRate++;
+            }
             dispatch(setRatedList(ratedList));
-        });
+        } catch (error) {
+            console.log(error);
+        }
     };
-    useEffect(() => {
-        console.log("displayWarning:", displayWarning);
-    }, [displayWarning]);
 
     const login = async (username: string, password: string) => {
         try {
@@ -71,7 +95,7 @@ export default function useUser() {
             localStorage.setItem("user", JSON.stringify(userInfo));
             dispatch(setUser(userInfo));
             loadUserMovies(userInfo);
-        } catch (error) {
+        } catch (error: any) {
             setDisplayWarning(true); // Handle the error for invalid username or password
             throw error;
         }
@@ -90,8 +114,8 @@ export default function useUser() {
                 const userInfo: UserInfo = JSON.parse(userDataStr);
                 dispatch(setUser(userInfo));
                 loadUserMovies(userInfo);
-            } catch (e) {
-                console.log(e);
+            } catch (error) {
+                console.log(error);
             }
         }
     };

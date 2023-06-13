@@ -6,6 +6,7 @@ import { setMoviesList, setCurrentPage } from "../../store/slices/movies-slice";
 import ClientAPI from "../../apiServices";
 import { RootState } from "../../store/store";
 import { Pagination } from "../SharedComponenets/Pagination";
+import SpinnerLoading from "../SharedComponenets/SpinnerLoading";
 
 export const Home = () => {
     const [category, setCategory] = useState<string>("now_playing");
@@ -44,9 +45,9 @@ export const Home = () => {
         );
     }
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <SpinnerLoading />;
     }
-
+    console.log("movielist", moviesList);
     return (
         <div className="home">
             <div className="home-top">
